@@ -86,7 +86,7 @@ public interface List {
 	 *       | Arrays.equals(toArray(),
 	 *       |     IntStream.range(0, old(size()))
 	 *       |     .filter(i -> i != old(indexOf(object)))
-	 *       |     .mapToObj(i -> old(toArray())[i]).toArray())
+	 *       |     .<Object>mapToObj(i -> old(toArray())[i]).toArray())
 	 */
 	public void remove(Object object);
 
