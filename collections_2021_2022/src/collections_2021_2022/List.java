@@ -44,7 +44,12 @@ public interface List {
 	 *       |           .filter(i -> toArray()[i].equals(object))
 	 *       |           .findFirst().orElse(-1)
 	 */
-	public int indexOf(Object object);
+	default int indexOf(Object object) {
+		for (int i = 0; i < size; i++)
+			if (get(i).equals(object))
+				return i;
+		return -1
+	}
 	
 	public default Stream<Object> stream() { return Arrays.stream(toArray()); }
 	
@@ -65,7 +70,7 @@ public interface List {
 	 * @post | Arrays.equals(toArray(), 0, old(size()), old(toArray()), 0, old(size()))
 	 * @post | toArray()[old(size())] == object
 	 */
-	public void add(Object object);
+	default void add(Object object);
 	
 	/**
 	 * @pre | 0 <= index && index < size()
